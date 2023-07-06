@@ -1,5 +1,5 @@
-*.i
-*.ii
+15.i
+vdfb.ii
 *.gpu
 *.ptx
 *.cubin

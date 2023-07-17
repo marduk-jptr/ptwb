@@ -1,0 +1,6 @@
+#include <iostream>
+
+int main() {
+    // Выводим приветствие на экран
+    std::cout << "Привет, мир!" << std::endl;
+    return 0;

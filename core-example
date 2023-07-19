@@ -1,6 +1,68 @@
 #include <iostream>
+#include <vector>
+#include <string>
+#include <random>
+
+// Функция для генерации случайных предложений на немецком языке
+std::string generiere_satz_deutsch() {
+    std::vector<std::string> subjekte = {"Ich", "Du", "Er", "Sie", "Wir", "Ihr", "Sie"};
+    std::vector<std::string> verben = {"spiele", "gehe", "liebe", "spreche", "lese", "schwimme"};
+    std::vector<std::string> objekte = {"Ball", "Haus", "Blumen", "Buch", "Fisch", "Sonne"};
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> subjekt_dist(0, subjekte.size() - 1);
+    std::uniform_int_distribution<> verb_dist(0, verben.size() - 1);
+    std::uniform_int_distribution<> objekt_dist(0, objekte.size() - 1);
+
+    std::string subject = subjekte[subjekt_dist(gen)];
+    std::string verb = verben[verb_dist(gen)];
+    std::string obj = objekte[objekt_dist(gen)];
+
+    return subject + " " + verb + " " + obj + ".";
+}
+
+// Функция для генерации случайных предложений на английском языке
+std::string generate_sentence_english() {
+    std::vector<std::string> subjects = {"I", "You", "He", "She", "We", "They"};
+    std::vector<std::string> verbs = {"play", "go", "love", "speak", "read", "swim"};
+    std::vector<std::string> objects = {"ball", "house", "flowers", "book", "fish", "sun"};
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> subject_dist(0, subjects.size() - 1);
+    std::uniform_int_distribution<> verb_dist(0, verbs.size() - 1);
+    std::uniform_int_distribution<> object_dist(0, objects.size() - 1);
+
+    std::string subject = subjects[subject_dist(gen)];
+    std::string verb = verbs[verb_dist(gen)];
+    std::string obj = objects[object_dist(gen)];
+
+    return subject + " " + verb + " " + obj + ".";
+}
 
 int main() {
-    // Выводим приветствие на экран
-    std::cout << "Привет, мир!" << std::endl;
+    int num_sentences;
+    char language_choice;
+
+    std::cout << "Выберите язык (d - немецкий, e - английский): ";
+    std::cin >> language_choice;
+
+    std::cout << "Введите количество предложений: ";
+    std::cin >> num_sentences;
+
+    for (int i = 0; i < num_sentences; ++i) {
+        std::string sentence;
+        if (language_choice == 'd') {
+            sentence = generiere_satz_deutsch();
+        } else if (language_choice == 'e') {
+            sentence = generate_sentence_english();
+        } else {
+            std::cout << "Неверный выбор языка. Выберите 'd' или 'e'." << std::endl;
+            return 1;
+        }
+        std::cout << sentence << std::endl;
+    }
+
     return 0;
+}

@@ -1,0 +1,37 @@
+from cryptography.fernet import Fernet
+
+def generate_key():
+    return Fernet.generate_key()
+
+def encrypt_file(file_path, key):
+    with open(file_path, 'rb') as file:
+        data = file.read()
+
+    fernet = Fernet(key)
+    encrypted_data = fernet.encrypt(data)
+
+    with open(file_path + '.encrypted', 'wb') as encrypted_file:
+        encrypted_file.write(encrypted_data)
+
+def decrypt_file(encrypted_file_path, key):
+    with open(encrypted_file_path, 'rb') as encrypted_file:
+        encrypted_data = encrypted_file.read()
+
+    fernet = Fernet(key)
+    decrypted_data = fernet.decrypt(encrypted_data)
+
+    with open(encrypted_file_path[:-10], 'wb') as decrypted_file:
+        decrypted_file.write(decrypted_data)
+
+# Пример использования
+if __name__ == "__main__":
+    file_path = 'путь_к_файлу_для_шифрования.docx'
+    key = generate_key()
+
+    encrypt_file(file_path, key)
+    print("Файл успешно зашифрован.")
+
+    # Предполагается, что расшифровка происходит на том же компьютере
+    # и ключ сохранен в безопасном месте.
+    decrypt_file(file_path + '.encrypted', key)
+    print("Файл успешно расшифрован.")

@@ -9,6 +9,8 @@ std::string generateGermanSentence() {
                                       "spiele", "gehe", "liebe", "spreche", "lese", "schwimme",
                                       "Ball", "Haus", "Blumen", "Buch", "Fisch", "Sonne"};
 
+//This code must be actually controled
+
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, words.size() - 1);

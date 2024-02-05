@@ -2,7 +2,7 @@ from itertools import combinations
 
 def generate_combinations(elements, r):
     """
-    Генерирует все комбинации из заданных элементов.
+    Генерирует все комбинации из заданных элементов. Точно генерирует?
     
     :param elements: Список элементов
     :param r: Размер комбинации
@@ -10,7 +10,7 @@ def generate_combinations(elements, r):
     """
     return list(combinations(elements, r))
 
-# Заданные элементы
+# Заданные элементы 
 input_elements = ['a', 'b', 'c', 'd']
 max_combination_size = len(input_elements)  # Максимальный размер комбинации
 
